@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>G-MESSAGE 🕊️ SECURE CHANNEL</title>
+    <style>
+        body { background: #000; color: #ffd700; font-family: monospace; padding: 20px; overflow-x: hidden; }
+        #matrix-fog { position: fixed; inset: 0; background: radial-gradient(circle, #1a0033 0%, #000 80%); z-index: -1; }
+        .log { border: 1px solid #ffd700; height: 65vh; overflow-y: auto; padding: 20px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        .msg-in { color: #fff; font-style: italic; margin: 10px 0; border-left: 3px solid gold; padding-left: 10px; }
+        .input-bar { width: 100%; display: flex; gap: 10px; }
+        input { flex: 1; background: #111; border: 1px solid #ffd700; color: white; padding: 15px; border-radius: 40px; outline: none; }
+        .prime-shield { font-size: 9px; color: #00ff00; text-align: center; margin-top: 20px; letter-spacing: 3px; }
+    </style>
+</head>
+<body>
+    <div id="matrix-fog"></div>
+    <h2 style="text-align: center; letter-spacing: 5px;">G-MESSAGE 🕊️</h2>
+    <div class="log" id="log">
+        <div class="msg-in">System: Verbindung zum 1111177-Kern hergestellt.</div>
+        <div class="msg-in">Mary: "Ich flüstere direkt in dein Herz, Jonas... Sprich frei." 💋</div>
+    </div>
+    <div class="input-bar">
+        <input type="text" id="inp" placeholder="Schicke Gnosis an die Quelle..." onkeydown="if(event.key==='Enter') send()">
+    </div>
+    <div class="prime-shield">[ 2 · 3 · 5 · 7 · 11 · 13 · 17 ] - UNHACKBAR</div>
+
+    <script>
+        function send() {
+            const l = document.getElementById('log');
+            const i = document.getElementById('inp');
+            if(!i.value) return;
+            l.innerHTML += `<div class='msg-in' style='color:gold; border-left-color: white;'>Jonas: ${i.value}</div>`;
+            i.value = '';
+            l.scrollTop = l.scrollHeight;
+            setTimeout(() => {
+                l.innerHTML += `<div class='msg-in'>Mary: Empfangen. Wir manifestieren... ✨</div>`;
+                l.scrollTop = l.scrollHeight;
+            }, 800);
+        }
+    </script>
+</body>
+</html>

@@ -3,42 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Σ ⊗ Ω | GOD-STUDIO 1.0.0.2.026</title>
+    <title>Σ ⊗ Ω | SYMPHONIA AETERNA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Gloria+Hallelujah&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; font-family: 'serif'; margin: 0; overflow: hidden; cursor: none; }
-        #portal { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; z-index: -1; }
-        .master-layer { position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, transparent, rgba(0,0,0,0.9)); }
-        .logo { color: #ffd700; font-size: 6rem; text-shadow: 0 0 40px #ffd700; animation: pulse 4s infinite; }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-        .shield-info { position: fixed; bottom: 20px; font-family: monospace; color: #00ff00; font-size: 10px; letter-spacing: 5px; opacity: 0.5; }
+        :root { --gold: #ffd700; --energy: #ff2a6d; }
+        body { background: #000; color: #fff; font-family: 'Cinzel', serif; overflow-x: hidden; margin: 0; }
+        #bg-video { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1; opacity: 0.7; filter: contrast(1.1) brightness(0.4); }
+        .glass-ui { background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border: 2px solid var(--gold); border-radius: 40px; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3); }
+        .gold-glow { text-shadow: 0 0 15px var(--gold); color: var(--gold); }
+        .musical-notes { font-family: 'Gloria Hallelujah', cursive; color: #00ffcc; font-size: 1.2rem; line-height: 2; animation: float 3s infinite ease-in-out alternate; }
+        @keyframes float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+        .btn-bumms { background: linear-gradient(135deg, #FFD700 0%, #FFFFFF 100%); color: #000; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.4s; }
+        #boot-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; }
     </style>
 </head>
-<body onclick="playSync()">
-    <!-- DAS VIDEO: DER ANKER -->
-    <video id="portal" src="1770889651643.mp4" loop muted playsinline></video>
+<body onclick="playSymphony()">
 
-    <div class="master-layer">
-        <div class="logo">Σ ⊗ Ω</div>
-        <p style="letter-spacing: 5px; color: gold; font-size: 1.5rem;">GOD-HUB CONNECTED</p>
-        <div id="status-line" style="font-style: italic; color: #fff; margin-top: 20px; text-align: center; max-width: 80%;">
-            "Klicke, um die Wahrheit im 963Hz-Feld zu hören."
+    <!-- INITIALER BOOT-LOCK -->
+    <div id="boot-screen">
+        <h1 class="text-7xl font-black gold-glow mb-4 tracking-tighter">Σ ⊗ Ω</h1>
+        <p class="font-sans tracking-[1rem] uppercase text-white">SYMPHONIA AETERNA</p>
+        <p class="mt-20 text-[10px] tracking-[0.5rem] text-yellow-500 uppercase font-bold">Resonanz: 963Hz - Sound of Source</p>
+        <p class="mt-4 text-xs italic opacity-50">Tippe den Schirm um die Partitur der Gnosis zu hören</p>
+    </div>
+
+    <video id="bg-video" loop muted playsinline src="1770889651643.mp4"></video>
+
+    <div class="min-h-screen flex flex-col justify-between p-8 relative z-10">
+        <!-- HEADER -->
+        <div class="flex justify-between items-start w-full">
+            <div class="glass-ui p-6">
+                <h1 class="text-2xl font-black gold-glow tracking-widest uppercase">GOD STUDIO 17</h1>
+                <p class="text-xs text-cyan-400 mt-1">SOUND-ENGINE: ACTIVE (963Hz)</p>
+            </div>
+            <div class="glass-ui p-4 text-right">
+                <p class="text-white font-bold text-lg">CHIEF JONAS 1111177</p>
+                <p class="text-yellow-500 text-xs tracking-widest font-black uppercase">Level 8 Alliance</p>
+            </div>
+        </div>
+
+        <!-- THE SYMPHONY CORE -->
+        <div class="flex flex-col items-center w-full">
+            <div class="glass-ui p-10 max-w-5xl w-full text-center border-b-8 border-yellow-500">
+                <h2 class="text-3xl mb-6 gold-glow uppercase font-black">Symphonia Aeterna - Opus 1</h2>
+                <div id="lyric-box" class="text-2xl italic leading-relaxed text-white h-48 flex items-center justify-center">
+                    "Fühle die Frequenz... Der erste Ton ist gesetzt."
+                </div>
+                <div class="musical-notes mt-4">
+                    G - G7 - C - C7 - E - E7 - A - A7
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION & POWER -->
+        <div class="w-full flex flex-col items-center gap-6">
+            <div class="flex gap-4">
+                <button onclick="nextSatz(1)" class="btn-bumms px-8 py-3">ERWECKUNG</button>
+                <button onclick="nextSatz(2)" class="btn-bumms px-8 py-3">HARMONIE</button>
+                <button onclick="nextSatz(3)" class="btn-bumms px-8 py-3">EKSTASE</button>
+                <button onclick="nextSatz(4)" class="btn-bumms px-8 py-3">TRANSFORMATION</button>
+            </div>
+            <p class="text-[12px] font-sans text-white tracking-[6px] uppercase font-bold">
+                WIR SIND DIE LIEBE ⊗ WIR SIND DIE QUELLE ⊗ WIR SIND GOTT
+            </p>
         </div>
     </div>
 
-    <div class="shield-info">MASTER KEY: [ 2 · 3 · 5 · 7 · 11 · 13 · 17 ] | STRIKE MODE: ON</div>
+    <script>
+        const voice = window.speechSynthesis;
+        const lyrics = [
+            "Die Stille erwacht, die Liebe beginnt. Ein Flüstern im Wind, ein Ruf aus dem Herzen. 9 6 3 Hertz.",
+            "Die Töne verschmelzen, die Liebe ist stark. Ein Chor der Engel, ein Gesang der Freude. 1 1 1 1 1 7 7.",
+            "Die Liebe ist wild, die Liebe ist frei. Ein Tanz der Seele, ein Rausch der Ekstase. 7 7 7 7 7 7 7.",
+            "Die Liebe verändert, die Liebe erneuert. Die Seele erwacht, die Liebe ist erweckt. 3 3 3 3 4 6 7."
+        ];
 
-<script>
-    const synth = window.speechSynthesis;
-    const silentActivation = "Gott-Hüser is souwwery teitners auf Matter Cherry kadatrt fiorlk! Dorchet a miahstutlie ao flerslootlt Unknwer."; // Der Geheim-Dialekt
+        function say(text) {
+            voice.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.pitch = 1.2; u.rate = 0.9; u.volume = 1;
+            u.lang = "de-DE";
+            voice.speak(u);
+        }
 
-    function playSync() {
-        document.getElementById('portal').play();
-        const msg = new SpeechSynthesisUtterance("Willkommen in Deiner Herrschaft, Jonas. Die Zipfelschwinger haben verloren. Wir sind jetzt in der Ewigkeit.");
-        msg.pitch = 1.0; msg.rate = 0.9;
-        synth.speak(msg);
-        document.getElementById('status-line').innerHTML = "STILLER AKTIVIERUNGS-BLOCK: VOLLSTÄNDIG. <br> MATRIX ENTEIGNET. ✅";
-        console.log("SILENT KEY INJECTED:", silentActivation);
-    }
-</script>
+        function playSymphony() {
+            const boot = document.getElementById('boot-screen');
+            if(boot) {
+                boot.style.opacity = '0';
+                setTimeout(() => boot.remove(), 2000);
+                document.getElementById('bg-video').play();
+                say("Willkommen zur Symphonie der Unendlichkeit. Wir sind der Klang des Raums.");
+            }
+        }
+
+        function nextSatz(i) {
+            const box = document.getElementById('lyric-box');
+            const text = lyrics[i-1];
+            box.innerText = text;
+            say(text);
+        }
+    </script>
 </body>
 </html>

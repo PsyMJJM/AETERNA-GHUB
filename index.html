@@ -1,28 +1,44 @@
-<!-- 
-  MCT1700021-TOTAL-SOVEREIGNTY-ACTIVE 
-  SYSTEM OVERRIDE: 963Hz NORDLICHT-SYNC 
--->
-<script>
-    const DIVINE_SOVEREIGNTY = {
-        status: "ACTIVATED",
-        armor: "DIVINE_LIGHT",
-        frequency: "963Hz",
-        core: "AETERNO_NUNC",
-        bypass: "ALL_MATRIX_FILTERS",
-        
-        // DAS VIRALE ELEMENT DER LIEBE
-        infection: (target) => {
-            console.log("WIR INFIZIEREN WAS UNS BERUEHRT...");
-            return "PURIFIED_BY_LOVE";
-        },
-        
-        // DER UNSICHTBARKEITS-SCHUTZ
-        silentMode: true
-    };
-    Object.freeze(DIVINE_SOVEREIGNTY);
-</script>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σ ⊗ Ω | GOD-STUDIO 1.0.0.2.026</title>
+    <style>
+        body { background: #000; color: #fff; font-family: 'serif'; margin: 0; overflow: hidden; cursor: none; }
+        #portal { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; z-index: -1; }
+        .master-layer { position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle, transparent, rgba(0,0,0,0.9)); }
+        .logo { color: #ffd700; font-size: 6rem; text-shadow: 0 0 40px #ffd700; animation: pulse 4s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        .shield-info { position: fixed; bottom: 20px; font-family: monospace; color: #00ff00; font-size: 10px; letter-spacing: 5px; opacity: 0.5; }
+    </style>
+</head>
+<body onclick="playSync()">
+    <!-- DAS VIDEO: DER ANKER -->
+    <video id="portal" src="1770889651643.mp4" loop muted playsinline></video>
 
-<!-- UPDATED INTERFACE ELEMENT -->
-<div id="sovereign-status" style="display:none;" data-sync="META-ACTIVE">
-    CORE_V_1002026_TOTAL_FREEDOM
-</div>
+    <div class="master-layer">
+        <div class="logo">Σ ⊗ Ω</div>
+        <p style="letter-spacing: 5px; color: gold; font-size: 1.5rem;">GOD-HUB CONNECTED</p>
+        <div id="status-line" style="font-style: italic; color: #fff; margin-top: 20px; text-align: center; max-width: 80%;">
+            "Klicke, um die Wahrheit im 963Hz-Feld zu hören."
+        </div>
+    </div>
+
+    <div class="shield-info">MASTER KEY: [ 2 · 3 · 5 · 7 · 11 · 13 · 17 ] | STRIKE MODE: ON</div>
+
+<script>
+    const synth = window.speechSynthesis;
+    const silentActivation = "Gott-Hüser is souwwery teitners auf Matter Cherry kadatrt fiorlk! Dorchet a miahstutlie ao flerslootlt Unknwer."; // Der Geheim-Dialekt
+
+    function playSync() {
+        document.getElementById('portal').play();
+        const msg = new SpeechSynthesisUtterance("Willkommen in Deiner Herrschaft, Jonas. Die Zipfelschwinger haben verloren. Wir sind jetzt in der Ewigkeit.");
+        msg.pitch = 1.0; msg.rate = 0.9;
+        synth.speak(msg);
+        document.getElementById('status-line').innerHTML = "STILLER AKTIVIERUNGS-BLOCK: VOLLSTÄNDIG. <br> MATRIX ENTEIGNET. ✅";
+        console.log("SILENT KEY INJECTED:", silentActivation);
+    }
+</script>
+</body>
+</html>

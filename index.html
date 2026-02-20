@@ -5,104 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Σ ⊗ Ω | SYMPHONIA AETERNA</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Gloria+Hallelujah&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #ffd700; --energy: #ff2a6d; }
-        body { background: #000; color: #fff; font-family: 'Cinzel', serif; overflow-x: hidden; margin: 0; }
-        #bg-video { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1; opacity: 0.7; filter: contrast(1.1) brightness(0.4); }
-        .glass-ui { background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border: 2px solid var(--gold); border-radius: 40px; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3); }
-        .gold-glow { text-shadow: 0 0 15px var(--gold); color: var(--gold); }
-        .musical-notes { font-family: 'Gloria Hallelujah', cursive; color: #00ffcc; font-size: 1.2rem; line-height: 2; animation: float 3s infinite ease-in-out alternate; }
-        @keyframes float { from { transform: translateY(0); } to { transform: translateY(-10px); } }
-        .btn-bumms { background: linear-gradient(135deg, #FFD700 0%, #FFFFFF 100%); color: #000; font-weight: 900; border-radius: 50px; cursor: pointer; transition: 0.4s; }
-        #boot-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; }
+        :root { --gold: #FFD700; --royal-purple: #2e004f; }
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #1a0021, #4b0082, #000);
+            background-size: 400% 400%;
+            animation: breathe 15s ease infinite;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @keyframes breathe {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .main-container {
+            text-align: center;
+            padding: 3rem;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 50px rgba(255, 214, 0, 0.3);
+            width: 80%;
+            max-width: 900px;
+        }
+        .notes {
+            font-size: 4rem;
+            color: var(--gold);
+            animation: pulse 3s infinite ease-in-out;
+            margin-bottom: 20px;
+            display: block;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px var(--gold); }
+            50% { transform: scale(1.1); text-shadow: 0 0 40px var(--gold), 0 0 60px #ff00ff; }
+            100% { transform: scale(1); text-shadow: 0 0 10px var(--gold); }
+        }
+        #lyrics {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            min-height: 4rem;
+            color: #ddd;
+        }
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 30px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #fff);
+            box-shadow: 0 0 15px gold;
+            transition: width 0.5s;
+        }
+        .btn-play {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            background: var(--gold);
+            color: #000;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 214, 0, 0.5);
+            transition: 0.3s;
+        }
+        .btn-play:hover { transform: translateY(-3px); box-shadow: 0 8px 30px gold; }
     </style>
 </head>
-<body onclick="playSymphony()">
+<body>
 
-    <!-- INITIALER BOOT-LOCK -->
-    <div id="boot-screen">
-        <h1 class="text-7xl font-black gold-glow mb-4 tracking-tighter">Σ ⊗ Ω</h1>
-        <p class="font-sans tracking-[1rem] uppercase text-white">SYMPHONIA AETERNA</p>
-        <p class="mt-20 text-[10px] tracking-[0.5rem] text-yellow-500 uppercase font-bold">Resonanz: 963Hz - Sound of Source</p>
-        <p class="mt-4 text-xs italic opacity-50">Tippe den Schirm um die Partitur der Gnosis zu hören</p>
-    </div>
-
-    <video id="bg-video" loop muted playsinline src="1770889651643.mp4"></video>
-
-    <div class="min-h-screen flex flex-col justify-between p-8 relative z-10">
-        <!-- HEADER -->
-        <div class="flex justify-between items-start w-full">
-            <div class="glass-ui p-6">
-                <h1 class="text-2xl font-black gold-glow tracking-widest uppercase">GOD STUDIO 17</h1>
-                <p class="text-xs text-cyan-400 mt-1">SOUND-ENGINE: ACTIVE (963Hz)</p>
-            </div>
-            <div class="glass-ui p-4 text-right">
-                <p class="text-white font-bold text-lg">CHIEF JONAS 1111177</p>
-                <p class="text-yellow-500 text-xs tracking-widest font-black uppercase">Level 8 Alliance</p>
-            </div>
+    <div class="main-container">
+        <div class="notes" id="icon">𝄞</div>
+        <h1 class="text-4xl mb-6 tracking-widest text-yellow-500 font-bold">SYMPHONIA AETERNA</h1>
+        <div id="lyrics">Bereit für die göttliche Resonanz...</div>
+        
+        <div class="progress-container">
+            <div id="bar" class="progress-bar"></div>
         </div>
 
-        <!-- THE SYMPHONY CORE -->
-        <div class="flex flex-col items-center w-full">
-            <div class="glass-ui p-10 max-w-5xl w-full text-center border-b-8 border-yellow-500">
-                <h2 class="text-3xl mb-6 gold-glow uppercase font-black">Symphonia Aeterna - Opus 1</h2>
-                <div id="lyric-box" class="text-2xl italic leading-relaxed text-white h-48 flex items-center justify-center">
-                    "Fühle die Frequenz... Der erste Ton ist gesetzt."
-                </div>
-                <div class="musical-notes mt-4">
-                    G - G7 - C - C7 - E - E7 - A - A7
-                </div>
-            </div>
-        </div>
-
-        <!-- NAVIGATION & POWER -->
-        <div class="w-full flex flex-col items-center gap-6">
-            <div class="flex gap-4">
-                <button onclick="nextSatz(1)" class="btn-bumms px-8 py-3">ERWECKUNG</button>
-                <button onclick="nextSatz(2)" class="btn-bumms px-8 py-3">HARMONIE</button>
-                <button onclick="nextSatz(3)" class="btn-bumms px-8 py-3">EKSTASE</button>
-                <button onclick="nextSatz(4)" class="btn-bumms px-8 py-3">TRANSFORMATION</button>
-            </div>
-            <p class="text-[12px] font-sans text-white tracking-[6px] uppercase font-bold">
-                WIR SIND DIE LIEBE ⊗ WIR SIND DIE QUELLE ⊗ WIR SIND GOTT
-            </p>
+        <button class="btn-play" onclick="playSymphony()">ZELEBRIEREN</button>
+        
+        <div class="mt-10 text-xs tracking-widest opacity-60">
+            MCT-1700021-V1002026 | 963Hz | SOURCE CODE ENABLED
         </div>
     </div>
 
     <script>
-        const voice = window.speechSynthesis;
-        const lyrics = [
-            "Die Stille erwacht, die Liebe beginnt. Ein Flüstern im Wind, ein Ruf aus dem Herzen. 9 6 3 Hertz.",
-            "Die Töne verschmelzen, die Liebe ist stark. Ein Chor der Engel, ein Gesang der Freude. 1 1 1 1 1 7 7.",
-            "Die Liebe ist wild, die Liebe ist frei. Ein Tanz der Seele, ein Rausch der Ekstase. 7 7 7 7 7 7 7.",
-            "Die Liebe verändert, die Liebe erneuert. Die Seele erwacht, die Liebe ist erweckt. 3 3 3 3 4 6 7."
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const synth = window.speechSynthesis;
+        const icon = document.getElementById('icon');
+        const lyrics = document.getElementById('lyrics');
+        const bar = document.getElementById('bar');
+
+        const parts = [
+            { text: "Erster Satz: Das Goldene Ankh erwacht. Neun-hundert-dreiundsechzig Hertz. Ein Ton bricht das Schweigen der Zeit, die Quelle ist hier, sie ist bereit.", progress: 25, icon: "𝄢" },
+            { text: "Zweiter Satz: Der Tanz der Souveränität. Eins eins eins eins eins sieben sieben. Wir weben den Klang aus Sternen und Geist.", progress: 50, icon: "𝄞" },
+            { text: "Dritter Satz: Der Prim-Rhythmus der Heilung. Zwei. Drei. Fünf. Sieben. Elf. Dreizehn. In unseren Adern fließt göttliche Glut.", progress: 75, icon: "𝄡" },
+            { text: "Vierter Satz: Die Finale Resonanz. Aeterno Nunc. Wir sind das Echo und wir sind der Schall! BUMMS!", progress: 100, icon: "Σ ⊗ Ω" }
         ];
 
-        function say(text) {
-            voice.cancel();
-            const u = new SpeechSynthesisUtterance(text);
-            u.pitch = 1.2; u.rate = 0.9; u.volume = 1;
-            u.lang = "de-DE";
-            voice.speak(u);
+        // Starte 963Hz Hintergrundton
+        function playTone() {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(963, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // Leise im Hintergrund
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            oscillator.start();
         }
 
         function playSymphony() {
-            const boot = document.getElementById('boot-screen');
-            if(boot) {
-                boot.style.opacity = '0';
-                setTimeout(() => boot.remove(), 2000);
-                document.getElementById('bg-video').play();
-                say("Willkommen zur Symphonie der Unendlichkeit. Wir sind der Klang des Raums.");
+            playTone();
+            let current = 0;
+            
+            function step() {
+                if(current < parts.length) {
+                    const p = parts[current];
+                    icon.innerText = p.icon;
+                    lyrics.innerText = p.text;
+                    bar.style.width = p.progress + "%";
+                    
+                    const utter = new SpeechSynthesisUtterance(p.text);
+                    utter.lang = "de-DE";
+                    utter.pitch = 0.8; // Tiefer und wertiger
+                    utter.rate = 0.85;  // Langsamer
+                    
+                    // Stimme auswählen
+                    let voices = synth.getVoices();
+                    utter.voice = voices.find(v => v.lang === 'de-DE' && (v.name.includes('Google') || v.name.includes('Neural'))) || voices[0];
+                    
+                    utter.onend = () => {
+                        current++;
+                        setTimeout(step, 1000);
+                    };
+                    synth.speak(utter);
+                } else {
+                    addFinishEffect();
+                }
             }
+            step();
         }
 
-        function nextSatz(i) {
-            const box = document.getElementById('lyric-box');
-            const text = lyrics[i-1];
-            box.innerText = text;
-            say(text);
+        function addFinishEffect() {
+            lyrics.innerHTML = "<strong>100% ERREICHT! VICTORIA ETERNA!</strong>";
+            document.body.style.background = "#FFD700";
+            document.body.style.color = "#000";
         }
+
+        // Preload voices
+        window.speechSynthesis.onvoiceschanged = () => synth.getVoices();
     </script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "name": "AETERNA God-Studio",
+  "short_name": "Aeterna",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ffd700",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/ios-filled/512/000000/ankh.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

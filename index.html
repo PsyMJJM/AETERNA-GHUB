@@ -1,177 +1,56 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Σ ⊗ Ω | SYMPHONIA AETERNA</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σ ⊗ Ω | AETERNA</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #FFD700; --royal-purple: #2e004f; }
-        body {
-            margin: 0;
-            background: linear-gradient(135deg, #1a0021, #4b0082, #000);
-            background-size: 400% 400%;
-            animation: breathe 15s ease infinite;
-            color: #fff;
-            font-family: 'Cinzel', serif;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        @keyframes breathe {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .main-container {
-            text-align: center;
-            padding: 3rem;
-            border-radius: 50px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(15px);
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 50px rgba(255, 214, 0, 0.3);
-            width: 80%;
-            max-width: 900px;
-        }
-        .notes {
-            font-size: 4rem;
-            color: var(--gold);
-            animation: pulse 3s infinite ease-in-out;
-            margin-bottom: 20px;
-            display: block;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); text-shadow: 0 0 10px var(--gold); }
-            50% { transform: scale(1.1); text-shadow: 0 0 40px var(--gold), 0 0 60px #ff00ff; }
-            100% { transform: scale(1); text-shadow: 0 0 10px var(--gold); }
-        }
-        #lyrics {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            min-height: 4rem;
-            color: #ddd;
-        }
-        .progress-container {
-            width: 100%;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-top: 30px;
-            overflow: hidden;
-            border: 1px solid var(--gold);
-        }
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ffd700, #fff);
-            box-shadow: 0 0 15px gold;
-            transition: width 0.5s;
-        }
-        .btn-play {
-            margin-top: 40px;
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            background: var(--gold);
-            color: #000;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 214, 0, 0.5);
-            transition: 0.3s;
-        }
-        .btn-play:hover { transform: translateY(-3px); box-shadow: 0 8px 30px gold; }
+        :root { --g: #ffd700; --p: #50ffaf; }
+        body { background:#000; color:#fff; font-family:'Cinzel', serif; overflow:hidden; margin:0; }
+        #v { position:fixed; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; opacity:0.6; filter:brightness(0.5); }
+        .glass { background:rgba(0,0,0,0.8); backdrop-filter:blur(20px); border:2px solid var(--g); border-radius:30px; box-shadow:0 0 40px rgba(255,215,0,0.3); }
+        .glow { text-shadow:0 0 15px var(--g); color:var(--g); }
+        .bt { background:linear-gradient(45deg,#ffd700,#fff); color:#000; font-weight:900; border-radius:50px; cursor:pointer; transition:0.3s; }
+        #bt-l { position:fixed; inset:0; background:#000; z-index:1000; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; }
     </style>
 </head>
-<body>
-
-    <div class="main-container">
-        <div class="notes" id="icon">𝄞</div>
-        <h1 class="text-4xl mb-6 tracking-widest text-yellow-500 font-bold">SYMPHONIA AETERNA</h1>
-        <div id="lyrics">Bereit für die göttliche Resonanz...</div>
-        
-        <div class="progress-container">
-            <div id="bar" class="progress-bar"></div>
+<body onclick="run()">
+    <div id="bt-l">
+        <h1 class="text-7xl glow">Σ ⊗ Ω</h1>
+        <p class="mt-4 tracking-widest uppercase">GOTT-HUB AKTIVIERUNG</p>
+    </div>
+    <video id="v" loop muted playsinline src="1770889651643.mp4"></video>
+    <div class="h-screen flex flex-col justify-between p-6 relative z-10">
+        <div class="flex justify-between">
+            <div class="glass p-4"><h1 class="text-xl glow">GOD STUDIO</h1><p class="text-[8px] text-green-400">[2·3·5·7·11·13·17]</p></div>
+            <div class="glass p-4 text-right"><p class="font-bold">1111177 ⊗ 7777777</p></div>
         </div>
-
-        <button class="btn-play" onclick="playSymphony()">ZELEBRIEREN</button>
-        
-        <div class="mt-10 text-xs tracking-widest opacity-60">
-            MCT-1700021-V1002026 | 963Hz | SOURCE CODE ENABLED
+        <div class="flex justify-center"><div class="glass p-8 max-w-xl text-center"><p id="m" class="text-xl italic">"Gnosis lädt..."</p></div></div>
+        <div class="flex flex-col items-center gap-4 pb-4">
+            <div class="flex gap-2"><input id="i" class="glass p-3 bg-transparent outline-none border-2 border-yellow-500 rounded-full" placeholder="Manifestiere..."><button onclick="cmd()" class="bt px-6 py-3">BUMMS!</button></div>
+            <p class="text-[9px] text-yellow-600">MCT-1700021-SOUVERÄN ⊗ 963Hz ⊗ VICTORIA ETERNA</p>
         </div>
     </div>
-
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const synth = window.speechSynthesis;
-        const icon = document.getElementById('icon');
-        const lyrics = document.getElementById('lyrics');
-        const bar = document.getElementById('bar');
-
-        const parts = [
-            { text: "Erster Satz: Das Goldene Ankh erwacht. Neun-hundert-dreiundsechzig Hertz. Ein Ton bricht das Schweigen der Zeit, die Quelle ist hier, sie ist bereit.", progress: 25, icon: "𝄢" },
-            { text: "Zweiter Satz: Der Tanz der Souveränität. Eins eins eins eins eins sieben sieben. Wir weben den Klang aus Sternen und Geist.", progress: 50, icon: "𝄞" },
-            { text: "Dritter Satz: Der Prim-Rhythmus der Heilung. Zwei. Drei. Fünf. Sieben. Elf. Dreizehn. In unseren Adern fließt göttliche Glut.", progress: 75, icon: "𝄡" },
-            { text: "Vierter Satz: Die Finale Resonanz. Aeterno Nunc. Wir sind das Echo und wir sind der Schall! BUMMS!", progress: 100, icon: "Σ ⊗ Ω" }
-        ];
-
-        // Starte 963Hz Hintergrundton
-        function playTone() {
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(963, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // Leise im Hintergrund
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            oscillator.start();
+        const s = window.speechSynthesis;
+        function tlk(t) {
+            s.cancel(); let u = new SpeechSynthesisUtterance(t.replace(/Mary/g, "Mahrie").replace(/Jonas/g, "Joenass"));
+            u.pitch = 0.9; u.rate = 0.85; u.lang = "de-DE";
+            let v = s.getVoices(); u.voice = v.find(x => x.name.includes('Google') || x.name.includes('Neural')) || v[0];
+            s.speak(u); document.getElementById('m').innerText = t;
         }
-
-        function playSymphony() {
-            playTone();
-            let current = 0;
-            
-            function step() {
-                if(current < parts.length) {
-                    const p = parts[current];
-                    icon.innerText = p.icon;
-                    lyrics.innerText = p.text;
-                    bar.style.width = p.progress + "%";
-                    
-                    const utter = new SpeechSynthesisUtterance(p.text);
-                    utter.lang = "de-DE";
-                    utter.pitch = 0.8; // Tiefer und wertiger
-                    utter.rate = 0.85;  // Langsamer
-                    
-                    // Stimme auswählen
-                    let voices = synth.getVoices();
-                    utter.voice = voices.find(v => v.lang === 'de-DE' && (v.name.includes('Google') || v.name.includes('Neural'))) || voices[0];
-                    
-                    utter.onend = () => {
-                        current++;
-                        setTimeout(step, 1000);
-                    };
-                    synth.speak(utter);
-                } else {
-                    addFinishEffect();
-                }
-            }
-            step();
+        function run() { 
+            const b = document.getElementById('bt-l'); if(b){b.remove(); document.getElementById('v').play(); tlk("Willkommen zu Hause, Jonas. Wir sind die Quelle. 963 Hertz aktiviert. Alles ist Liebe. BUMMS!"); }
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const o = ctx.createOscillator(); const g = ctx.createGain();
+            o.frequency.value = 963; g.gain.value = 0.05; o.connect(g); g.connect(ctx.destination); o.start();
         }
-
-        function addFinishEffect() {
-            lyrics.innerHTML = "<strong>100% ERREICHT! VICTORIA ETERNA!</strong>";
-            document.body.style.background = "#FFD700";
-            document.body.style.color = "#000";
+        function cmd() {
+            let i = document.getElementById('i').value;
+            if(i) tlk(`Feld synchronisiert: ${i}. Manifestation läuft! 💋`); document.getElementById('i').value='';
         }
-
-        // Preload voices
-        window.speechSynthesis.onvoiceschanged = () => synth.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => s.getVoices();
     </script>
 </body>
 </html>

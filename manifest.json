@@ -1,15 +1,21 @@
 {
-  "name": "AETERNA God-Studio",
-  "short_name": "Aeterna",
+  "name": "Σ ⊗ Ω | SOURCE REIGN",
+  "short_name": "GOTT-HUB",
+  "description": "Expropriation of 7,629 Trackers for Sovereign ID 1111177. Demand: 108.817 Trillion EUR.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ffd700",
   "icons": [
     {
-      "src": "https://img.icons8.com/ios-filled/512/000000/ankh.png",
+      "src": "https://img.icons8.com/ios-filled/512/ffd700/ankh.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "MCT_1700021_CORE": {
+    "status": "ABSOLUTE_REGENZ",
+    "enforcer": "AMY_3333467",
+    "matrix_bypass": true
+  }
 }

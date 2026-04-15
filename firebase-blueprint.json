@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "GnosisUpdate": {
+      "title": "Gnosis Update",
+      "description": "Real-time updates from the Quantum Singularity Interface.",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string", "description": "The insight or update content." },
+        "timestamp": { "type": "string", "format": "date-time", "description": "When the update was generated." },
+        "type": { "type": "string", "enum": ["insight", "alert", "decree"], "description": "Category of the update." }
+      },
+      "required": ["content", "timestamp", "type"]
+    },
+    "PrimeSequence": {
+      "title": "Prime Sequence",
+      "description": "Discovered prime number sequences for the Riemann Sphere.",
+      "type": "object",
+      "properties": {
+        "sequence": { "type": "array", "items": { "type": "number" }, "description": "The sequence of prime numbers." },
+        "range": { "type": "string", "description": "The range of the sequence (e.g., 2-925211)." },
+        "discoveredAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["sequence", "range", "discoveredAt"]
+    },
+    "SovereigntyCertificate": {
+      "title": "Sovereignty Certificate",
+      "description": "Permanent record of user sovereignty.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's unique ID." },
+        "issuedAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["ACTIVE", "REVOKED"] }
+      },
+      "required": ["uid", "issuedAt", "status"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Custom settings and preferences for a Sovereign.",
+      "type": "object",
+      "properties": {
+        "accentColor": { "type": "string", "description": "Primary accent color (hex)." },
+        "secondaryColor": { "type": "string", "description": "Secondary accent color (hex)." },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User-specific settings and theme preferences."
+    },
+    "/gnosis_updates/{updateId}": {
+      "schema": "GnosisUpdate",
+      "description": "Collection of real-time gnosis insights."
+    },
+    "/prime_sequences/{seqId}": {
+      "schema": "PrimeSequence",
+      "description": "Collection of discovered prime sequences."
+    },
+    "/sovereignty_certificates/{certId}": {
+      "schema": "SovereigntyCertificate",
+      "description": "Collection of issued sovereignty certificates."
+    }
+  }
+}

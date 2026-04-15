@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: gnosis_updates
+    // Fields: content (string), timestamp (timestamp), type (string)
+    //
+    // Collection: prime_sequences
+    // Fields: sequence (list), range (string), discoveredAt (timestamp)
+    //
+    // Collection: sovereignty_certificates
+    // Fields: uid (string), issuedAt (timestamp), status (string)
+    //
+    // Collection: users
+    // Fields: accentColor (string), secondaryColor (string), updatedAt (string)
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidUserProfile(data) {
+      return (!('accentColor' in data) || (data.accentColor is string && data.accentColor.matches("^#[0-9a-fA-F]{6}$"))) &&
+             (!('secondaryColor' in data) || (data.secondaryColor is string && data.secondaryColor.matches("^#[0-9a-fA-F]{6}$"))) &&
+             (!('updatedAt' in data) || data.updatedAt is string);
+    }
+
+    function isArchitect() {
+      return isAuthenticated() && 
+             request.auth.token.email == "grigatjonas@gmail.com" && 
+             request.auth.token.email_verified == true;
+    }
+
+    function isValidGnosisUpdate(data) {
+      return data.content is string && data.content.size() < 5000 &&
+             data.timestamp is timestamp &&
+             data.type in ['insight', 'alert', 'decree'];
+    }
+
+    match /gnosis_updates/{updateId} {
+      allow read: if isAuthenticated();
+      allow create: if isArchitect() && isValidGnosisUpdate(request.resource.data);
+    }
+
+    match /prime_sequences/{seqId} {
+      allow read: if isAuthenticated();
+      allow create: if isArchitect();
+    }
+
+    match /sovereignty_certificates/{certId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.uid || isArchitect());
+      allow create: if isArchitect();
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isArchitect();
+      allow write: if isOwner(userId) && isValidUserProfile(request.resource.data);
+    }
+  }
+}
